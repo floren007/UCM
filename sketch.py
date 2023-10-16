@@ -2,7 +2,7 @@
 Program to analize the logs files of an apache server.
 An example of file acommpanies this file: access.log
 sssssssssssssssssss
-
+z<aaaaasasasasasasasasasasasasasasasa
 """
 filetxt = open("acces_short.log",'r')
 content = filetxt.read()

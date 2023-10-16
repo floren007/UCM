@@ -1,11 +1,19 @@
 """
 Program to analize the logs files of an apache server.
 An example of file acommpanies this file: access.log
-
+sssssssssssssssssss
 
 """
+filetxt = open("acces_short.log",'r')
+content = filetxt.read()
+print(content)
+filetxt.close()
 
 def get_user_agent(line: str) -> str:
+    filetxt = open("acces_short.log",'r')
+    content = filetxt.read()
+    print(content)
+    filetxt.close()
     """
     Get the user agent of the line.
 

@@ -46,7 +46,6 @@ def is_bot(line: str) -> bool:
 
 
 def get_ipaddr(line):
-
     with open("access_short.log") as file:
         for line in file:
             print(line[0:line.find(" ")])

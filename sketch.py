@@ -87,6 +87,7 @@ def get_hour(line: str) -> int:
 
 
 def histbyhour(filename: str) -> dict[int, int]:
+    # while waiting to understand the statement
     '''
     Computes the histogram of access by hour
     '''

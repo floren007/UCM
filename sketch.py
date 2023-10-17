@@ -5,6 +5,10 @@ An example of file acommpanies this file: access.log
 
 
 def get_user_agent(line: str) -> str:
+    with open("access_short.log") as file:
+        for line in file:
+            print(line.split('"')[5])
+    file.close()
     """
     Get the user agent of the line.
     Expamples
@@ -17,6 +21,13 @@ def get_user_agent(line: str) -> str:
     raise NotImplementedError()
 
 def is_bot(line: str) -> bool:
+    with open("access_short.log") as file:
+        for line in file:
+            if "bot" or "Bot" in line:
+                print(True)
+            else:
+                print(False)
+            
     '''
     Check of the access in the line correspons to a bot
 
@@ -35,6 +46,11 @@ def is_bot(line: str) -> bool:
 
 
 def get_ipaddr(line):
+
+    with open("access_short.log") as file:
+        for line in file:
+            print(line[0:line.find(" ")])
+    file.close()     
     '''
     Gets the IP address of the line
 
@@ -49,6 +65,14 @@ def get_ipaddr(line):
 
 
 def get_hour(line: str) -> int:
+    with open("access_short.log", 'r') as file:
+        for numberLine, line in enumerate(file):
+            get_substring = line[line.find(":"):line.find("+")]
+            get_hour = get_substring.split(":")
+            print(get_hour[1])
+    file.close() 
+
+
     """
     Get the user agent of the line.
 
@@ -78,7 +102,6 @@ def ipaddreses(filename: str) -> set[str]:
     word1 = 'Bot'
     with open("access_short.log", 'r') as file:
         for numberLine, line in enumerate(file):
-            
             if (word or word1) in line:
                 print('string found in a file')
                 print('Line Number:', numberLine)

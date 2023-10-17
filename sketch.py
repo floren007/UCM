@@ -1,27 +1,16 @@
 """
 Program to analize the logs files of an apache server.
 An example of file acommpanies this file: access.log
-sssssssssssssssssss
-z<aaaaasasasasasasasasasasasasasasasa
 """
-filetxt = open("acces_short.log",'r')
-content = filetxt.read()
-print(content)
-filetxt.close()
+
 
 def get_user_agent(line: str) -> str:
-    filetxt = open("acces_short.log",'r')
-    content = filetxt.read()
-    print(content)
-    filetxt.close()
     """
     Get the user agent of the line.
-
     Expamples
     ---------
     >>> get_user_agent('66.249.66.35 - - [15/Sep/2023:00:18:46 +0200] "GET /~luis/sw05-06/libre_m2_baja.pdf HTTP/1.1" 200 5940849 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"')
     'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
-
     >>> get_user_agent('147.96.46.52 - - [10/Oct/2023:12:55:47 +0200] "GET /favicon.ico HTTP/1.1" 404 519 "https://antares.sip.ucm.es/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0"')
     'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0'
     """
@@ -84,7 +73,19 @@ def ipaddreses(filename: str) -> set[str]:
     '''
     Returns the IPs of the accesses that are not bots
     '''
-    raise NotImplementedError()
+    
+    word = 'bot'
+    word1 = 'Bot'
+    with open("access_short.log", 'r') as file:
+        for numberLine, line in enumerate(file):
+            
+            if (word or word1) in line:
+                print('string found in a file')
+                print('Line Number:', numberLine)
+                print('Line:', line)
+
+    file.close()  
+    raise NotImplementedError
 
 
 
@@ -103,3 +104,5 @@ def test_ipaddresses():
 def test_hist():
     hist = histbyhour('access_short.log')
     assert hist == {5: 3, 7: 2, 23: 1}
+
+

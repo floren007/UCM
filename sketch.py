@@ -71,6 +71,8 @@ Expamples
 
 def histbyhour(filename: str) -> dict[int, int]:
     # while waiting to understand the statement
+    # Luis could explain what i have to do in this function, cause in the other example above, 
+    # you wrote examples except in this funciton
     '''
     Computes the histogram of access by hour
     '''
@@ -80,18 +82,17 @@ def ipaddreses(filename: str) -> set[str]:
     '''
     Returns the IPs of the accesses that are not bots
     '''
-    
-    word = 'bot'
-    word1 = 'Bot'
-    with open("access_short.log", 'r') as file:
-        for numberLine, line in enumerate(file):
-            if (word or word1) in line:
-                print('string found in a file')
-                print('Line Number:', numberLine)
-                print('Line:', line)
-
-    file.close()  
-    raise NotImplementedError
+    arrayNobot = []
+    with open(filename, 'r') as file:
+        for line in file:
+            if "Bot" in line or "bot" in line:
+               continue
+            else:
+               arrayNobot.append(line)
+    file.close()
+    return arrayNobot
+      
+  
 
 
 
@@ -114,14 +115,13 @@ def test_hist():
 
 with open("access_short.log") as file:
     for line in file:
-        x = get_user_agent(line)
-        #print(x)
-        y = is_bot(line)
-        #print(y)
-        j = get_ipaddr(line)
-        #print(j)
-        k = get_hour(line)
-        print(k)
+        get_user_agent(line)
+        is_bot(line)
+        get_ipaddr(line)
+        get_hour(line)
         # histbyhour(line)
-        # ipaddreses(line)
+        ipaddreses(line)
 file.close()
+
+textOfile = input("Name of file txt you want to read: \n")
+print(ipaddreses(textOfile))

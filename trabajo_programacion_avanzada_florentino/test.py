@@ -37,6 +37,9 @@ class UrlEMT:
                     print(f"Coincidió esta URL: {url}")
                     # testeo
                     url1 = self.EMT+url
+                else:
+                    ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
+                    break
         else:
             ValueError("No has introducido el año y el mes correcto")
         return url1
@@ -64,23 +67,11 @@ class UrlEMT:
         url = self.get_url(year, month)
         csv = self.csv_from_zip(url)
         return csv
-        try:
-            response = requests.get(self.EMT+url)
-            if response.status_code != 200:
-                raise ConnectionError("Failed to connect to EMT server.")
-            else:
-                zip_file = ZipFile(BytesIO(response.content))
-                # Assume there's only one CSV file in the ZIP
-                csv_filename = zip_file.namelist()[0]
-                csv_file = zip_file.open(csv_filename)
-                return StringIO(csv_file)
-        except ConnectionError as e:
-            e
+        
     @staticmethod
     def csv_from_zip(url: str) -> StringIO:
         try:
             file = requests.get(url)
-            file.raise_for_status()
             file_content =  BytesIO(file.content)
             with zipfile.ZipFile(file_content) as zp:
                 listar = zp.namelist()
@@ -96,7 +87,7 @@ class UrlEMT:
 
 emt_url = UrlEMT()
 year = 23
-month = 2
+month = 5
 
 try:
     csv_file = emt_url.get_csv(year, month)

@@ -1,8 +1,10 @@
 import requests
 import re
-from io import TextIOWrapper, BytesIO
+from io import TextIOWrapper, BytesIO, StringIO
 from zipfile import ZipFile
 import pandas as pd
+from loguru import logger
+import zipfile
 class UrlEMT:
     # Creamos 2 constantes
     EMT = 'https://opendata.emtmadrid.es/'
@@ -18,18 +20,26 @@ class UrlEMT:
     def get_links(html_text):
         # Use regular expressions to find valid links
         link_pattern = r'<a[^>]*href="(/getattachment/[^"]+/trips_\d{2}_\d{2}_\w+-csv\.aspx)"[^>]*>.*?</a>'
-        valid_links = list(re.findall(link_pattern, html_text))
+        # un conjunto es una lista de objetos unicos por lo tanto el set() es la mejor opcion
+        valid_links = set(re.findall(link_pattern, html_text))
         return valid_links
 
 
     def get_url(self, year, month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
-        if month in range(1,13) and year in range(21,24):           
+        # pues hago un rango entre el año y los meses que nos interesan, so no enncuentra el mes ni el año
+        # pues es que la persona introducio mal el mes y el año
+        if month in range(1,13) and year in range(21,24):
+            target_month_name = pd.Timestamp(year, month, 1).strftime("%B")
+            pattern = f'/trips_{str(year)}_{str(month).zfill(2)}_{target_month_name}-csv.aspx'
             for url in self.enlaces_validos:
-                return url
+                if re.search(pattern, url):
+                    print(f"Coincidió esta URL: {url}")
+                    # testeo
+                    url1 = self.EMT+url
         else:
-            ValueError("No se ha enconntrado la URL")
-        
+            ValueError("No has introducido el año y el mes correcto")
+        return url1
         
     @staticmethod
     def select_valid_urls():
@@ -50,11 +60,12 @@ class UrlEMT:
 
     
 
-    def get_csv(self, year, month):
+    def get_csv(self, year, month) -> StringIO:
         url = self.get_url(year, month)
-        
+        csv = self.csv_from_zip(url)
+        return csv
         try:
-            response = requests.get(url)
+            response = requests.get(self.EMT+url)
             if response.status_code != 200:
                 raise ConnectionError("Failed to connect to EMT server.")
             else:
@@ -62,15 +73,30 @@ class UrlEMT:
                 # Assume there's only one CSV file in the ZIP
                 csv_filename = zip_file.namelist()[0]
                 csv_file = zip_file.open(csv_filename)
-                return TextIOWrapper(csv_file)
+                return StringIO(csv_file)
         except ConnectionError as e:
             e
+    @staticmethod
+    def csv_from_zip(url: str) -> StringIO:
+        try:
+            file = requests.get(url)
+            file.raise_for_status()
+            file_content =  BytesIO(file.content)
+            with zipfile.ZipFile(file_content) as zp:
+                listar = zp.namelist()
+                string_csv = StringIO(listar[0])
+            zp.close()
+        except ConnectionError as e:
+            logger.info(e)
+        return string_csv
 
+            
+            
 
 
 emt_url = UrlEMT()
-year = "2023"
-month = "02"
+year = 23
+month = 2
 
 try:
     csv_file = emt_url.get_csv(year, month)

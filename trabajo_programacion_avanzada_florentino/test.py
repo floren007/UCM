@@ -31,12 +31,13 @@ class UrlEMT:
         # pues hago un rango entre el año y los meses que nos interesan, so no enncuentra el mes ni el año
         # pues es que la persona introducio mal el mes y el año
         if month in range(1,13) and year in range(21,24):
-            patron = f'/trips_{str(year)}_{str(month).zfill(2)}
+            patron = f'{str(year)}_{str(month).zfill(2)}'
             for url in self.enlaces_validos:
                 if re.search(patron, url):
                     print(f"Coincidió esta URL: {url}")
                     # testeo
                     url1 = self.EMT+url
+                    break
                 else:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
                     
@@ -59,7 +60,7 @@ class UrlEMT:
                 raise ConnectionError("Conexion fallida")
             return valid_links
         except ConnectionError as e:
-            e
+            print(e)
 
     
 
@@ -74,8 +75,9 @@ class UrlEMT:
             file = requests.get(url)
             file_content =  BytesIO(file.content)
             with zipfile.ZipFile(file_content) as zp:
-                listar = zp.namelist()
-                string_csv = StringIO(listar[0])
+                listar = zp.namelist()[0]
+                csv_textio = zp.read(listar).decode('utf-8')
+                string_csv = StringIO(csv_textio)
             zp.close()
         except ConnectionError as e:
             print(e)
@@ -91,7 +93,5 @@ month = 12
 
 try:
     csv_file = emt_url.get_csv(year, month)
-    df = pd.read_csv(csv_file)
-    print(df.head())  # Realizar operaciones con el DataFrame
 except ValueError as e:
     print(e)

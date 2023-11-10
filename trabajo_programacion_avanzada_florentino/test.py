@@ -3,7 +3,8 @@ import re
 from io import TextIOWrapper, BytesIO, StringIO
 from zipfile import ZipFile
 import pandas as pd
-from loguru import logger
+import calendar
+
 import zipfile
 class UrlEMT:
     # Creamos 2 constantes
@@ -13,7 +14,7 @@ class UrlEMT:
     def __init__(self):
         # creo un atributo llamado valid_urls 
         # que llama a la funcion select_valid_urls
-        self.enlaces_validos = self.select_valid_urls()
+        self.enlaces_validos = UrlEMT.select_valid_urls()
         #  Esta funcion solo   agarrar los links que  son   validos
 
     @staticmethod
@@ -30,16 +31,15 @@ class UrlEMT:
         # pues hago un rango entre el año y los meses que nos interesan, so no enncuentra el mes ni el año
         # pues es que la persona introducio mal el mes y el año
         if month in range(1,13) and year in range(21,24):
-            target_month_name = pd.Timestamp(year, month, 1).strftime("%B")
-            pattern = f'/trips_{str(year)}_{str(month).zfill(2)}_{target_month_name}-csv.aspx'
+            patron = f'/trips_{str(year)}_{str(month).zfill(2)}
             for url in self.enlaces_validos:
-                if re.search(pattern, url):
+                if re.search(patron, url):
                     print(f"Coincidió esta URL: {url}")
                     # testeo
                     url1 = self.EMT+url
                 else:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
-                    break
+                    
         else:
             ValueError("No has introducido el año y el mes correcto")
         return url1
@@ -65,7 +65,7 @@ class UrlEMT:
 
     def get_csv(self, year, month) -> StringIO:
         url = self.get_url(year, month)
-        csv = self.csv_from_zip(url)
+        csv = UrlEMT.csv_from_zip(url)
         return csv
         
     @staticmethod
@@ -78,7 +78,7 @@ class UrlEMT:
                 string_csv = StringIO(listar[0])
             zp.close()
         except ConnectionError as e:
-            logger.info(e)
+            print(e)
         return string_csv
 
             
@@ -86,12 +86,12 @@ class UrlEMT:
 
 
 emt_url = UrlEMT()
-year = 23
-month = 5
+year = 22
+month = 12
 
 try:
     csv_file = emt_url.get_csv(year, month)
     df = pd.read_csv(csv_file)
     print(df.head())  # Realizar operaciones con el DataFrame
 except ValueError as e:
-    e
+    print(e)

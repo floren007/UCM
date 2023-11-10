@@ -1,10 +1,7 @@
 import requests
 import re
 from io import TextIOWrapper, BytesIO, StringIO
-from zipfile import ZipFile
 import pandas as pd
-import calendar
-
 import zipfile
 class UrlEMT:
     # Creamos 2 constantes
@@ -54,15 +51,12 @@ class UrlEMT:
             if response.status_code == 200:
                 html_text = response.text
                 valid_links = UrlEMT.get_links(html_text)
-                
-                
+            
             else:
                 raise ConnectionError("Conexion fallida")
             return valid_links
         except ConnectionError as e:
             print(e)
-
-    
 
     def get_csv(self, year, month) -> StringIO:
         url = self.get_url(year, month)
@@ -78,14 +72,9 @@ class UrlEMT:
                 listar = zp.namelist()[0]
                 csv_textio = zp.read(listar).decode('utf-8')
                 string_csv = StringIO(csv_textio)
-            zp.close()
         except ConnectionError as e:
             print(e)
         return string_csv
-
-            
-            
-
 
 emt_url = UrlEMT()
 year = 22

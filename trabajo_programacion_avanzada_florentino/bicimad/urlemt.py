@@ -73,27 +73,39 @@ class UrlEMT:
 
     def get_csv(self, year, month) -> StringIO:
         url = self.get_url(year, month)
+        # ahora con el enlace devuelto lo que hacemos es pasarselo a la funcion csv_from_zip
+        # para que nos saque los datos del csv, en este caso nos lo va devolver en StringIO 
         csv = UrlEMT.csv_from_zip(url)
+        # se hace return de los datos del csv
         return csv
         
     @staticmethod
     def csv_from_zip(url: str) -> StringIO:
         try:
+            # le pasamos el enlace y lo que devuelve es a descarga del fichero
             file = requests.get(url)
+            # ahora leemos el contenido en BytesIO
             file_content =  BytesIO(file.content)
-            with zipfile.ZipFile(file_content) as zp:
+            # con la libreria zipfile podemos leer el contenido
+            with zipfile.ZipFile(file_content,'r') as zp:
+                # se que el csv se encuentra en la primera posicion
                 listar = zp.namelist()[0]
+                # lo leo y lo codifico a utf-8 para podeer leerlo correctamente
                 csv_textio = zp.read(listar).decode('utf-8')
+                # por ultimo lo paso a StingIO
                 string_csv = StringIO(csv_textio)
         except ConnectionError as e:
             print(e)
+            # se retorna el csv en formato StringIO
         return string_csv
 
+# creamos una instancia de la clase  
 emt_url = UrlEMT()
 year = 22
 month = 12
 
 try:
+    # el retorno de esta funcion seria el csv en formato StringIO
     csv_file = emt_url.get_csv(year, month)
 except ValueError as e:
     print(e)

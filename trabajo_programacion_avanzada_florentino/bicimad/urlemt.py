@@ -23,37 +23,50 @@ class UrlEMT:
         return valid_links
 
 
-    def get_url(self, year, month):
+    def get_url(self, year, month) -> str:
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
-        # pues hago un rango entre el año y los meses que nos interesan, so no enncuentra el mes ni el año
-        # pues es que la persona introducio mal el mes y el año
+        # hago un rango entre el año y los meses que nos interesan
         if month in range(1,13) and year in range(21,24):
+            # con un patron que he creado, el cual le paso el año y el mes como si fuera un enlace
+            # de string para posteriormente con la libreria search buscar ese patron entre todos los enlaces
             patron = f'{str(year)}_{str(month).zfill(2)}'
+            # hacemos un bucle para recorrer todos los enlaces validos
             for url in self.enlaces_validos:
+                # con la libreria re y la funcion search busca entre
+                # todos los enlaces el patron que le he pasado como parametro
+                # en el caso que lo encuentre nos salta una notificacion con la url encontrada
                 if re.search(patron, url):
-                    print(f"Coincidió esta URL: {url}")
-                    # testeo
+                    # para devolver el enlace totalmente correcto y listo para descargar
+                    # para ello le sumamos el enlace de la pagina de bicimadrid como suijo
+                    # y como prefijo el enlace descargado
                     url1 = self.EMT+url
+                    print(f"Coincidió esta URL: {url1}")
                     break
                 else:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
                     
         else:
-            ValueError("No has introducido el año y el mes correcto")
+            ValueError("No has introducido el año o el mes correcto")
+            # se hace un return del enlace encontrado
         return url1
         
     @staticmethod
-    def select_valid_urls():
+    def select_valid_urls() -> set():
         try:
             # obtenemos el enlace de la web de bicimadrid
             response = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
-            # si la respuesta de
+            # hacemos un request a la web de bicimadrid
+            # si el servidor esta activo y el enlace es correcto nos devolvera status code de 200 sino devolvera 400
             if response.status_code == 200:
+                # obtenemos el texto de la web
                 html_text = response.text
+                # para enviarle el texto en crudo a la funcion get links
+                # Creo que hubiera siso mucho mas sencillo hacerlo con web scraping
+                # pero como hay que utilizar expresiones reulares pues le pasamos el texto en crudo
                 valid_links = UrlEMT.get_links(html_text)
-            
             else:
                 raise ConnectionError("Conexion fallida")
+            # retornamos el conjunto del links que son correctos
             return valid_links
         except ConnectionError as e:
             print(e)

@@ -17,7 +17,7 @@ class BiciMad:
                                                                                                 'lock_date'],usecols=[ 'idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
     'unlock_station_name', 'station_lock', 'lock_station_name'])
         # devolvemos el dataftame como tal
-        return df
+        return print(df.shape)
 
     @property
     def data(self):
@@ -77,6 +77,11 @@ class BiciMad:
         # Encontrar el maximo
         most_pop = stations.index.max()
         most_popular_stations = stations[stations == most_pop].index
+        return set(most_popular_stations)   
+
+
+
+
         return set(most_popular_stations)
     
     def usage_from_most_popular_station(df) -> int:
@@ -87,6 +92,6 @@ class BiciMad:
         return max_trip_count
     
 classBici = BiciMad(22,12)
-
+#y = classBici.get_data(month=12,year=22)
 x = classBici.resume()
 print(x)

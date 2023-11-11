@@ -1,7 +1,6 @@
 from bicimad.urlemt import UrlEMT
 import io
 import requests
-import os
 
 def test_constantes_clase():
     assert UrlEMT.EMT == 'https://opendata.emtmadrid.es/'

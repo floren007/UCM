@@ -1,4 +1,4 @@
-from bicimad.urlemt import UrlEMT
+from bicimad_f.urlemt import UrlEMT
 import io
 import requests
 

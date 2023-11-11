@@ -73,10 +73,10 @@ class BiciMad:
     
     def most_popular_stations(df) -> pd.Series:
         # se agrupa por address_unlock y se cuenta el numero de estaciones
-        stations = df.groupby('address_unlock').count()
-        most_pop = stations.sort_values(by='idBike',ascending = False)
-        most_pop.index.max()
-        return set(most_pop)
+        stations = df.groupby('address_unlock').sum()
+        most_pop = stations.index.max()
+        most_popular_stations = stations[stations == most_pop].index
+        return set(most_popular_stations)
     
     def usage_from_most_popular_station(df) -> int:
         stations = df.groupby('address_unlock').count()

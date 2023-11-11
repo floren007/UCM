@@ -1,7 +1,8 @@
 from bicimad.urlemt import UrlEMT
 import io
+import requests
 
-def test_url_emt_constantes_clase():
+def test_constantes_clase():
     assert UrlEMT.EMT == 'https://opendata.emtmadrid.es/'
     assert UrlEMT.GENERAL == "/Datos-estaticos/Datos-generales-(1)"
 
@@ -12,7 +13,7 @@ def test_url_get_links():
     url_valida = class_emt.get_links(test_valido)
     assert url_valida == {"/getattachment/34b933e4-4756-4fed-8d5b-2d44f7503ccc/trips_22_12_December-csv.aspx"}
 
-def test_url_emt_csv_from_zp():
+def test_csv_from_zip():
     class_emt = UrlEMT()
     url_correcta = {"https://opendata.emtmadrid.es//getattachment/34b933e4-4756-4fed-8d5b-2d44f7503ccc/trips_22_12_December-csv.aspx"}
     csv = class_emt.csv_from_zip(url_correcta)
@@ -30,5 +31,5 @@ def test_get_url():
     assert url_valida == {"/trips_22_12"}
 
 def test_select_valid_urls():
-    class_emt = UrlEMT()
-    
+    comprobar = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
+    assert comprobar.status_code == 200

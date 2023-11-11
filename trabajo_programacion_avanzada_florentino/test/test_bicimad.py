@@ -1,6 +1,4 @@
-import unittest
 from bicimad import Bicimad
-
 class TestBicimad(unittest.TestCase):
     def setUp(self):
         self.bicimad = Bicimad()

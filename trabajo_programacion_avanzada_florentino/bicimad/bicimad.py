@@ -74,16 +74,17 @@ class BiciMad:
     def most_popular_stations(df) -> pd.Series:
         # se agrupa por address_unlock y se cuenta el numero de estaciones
         stations = df.groupby('address_unlock').sum()
+        # Encontrar el maximo
         most_pop = stations.index.max()
         most_popular_stations = stations[stations == most_pop].index
         return set(most_popular_stations)
     
     def usage_from_most_popular_station(df) -> int:
-        stations = df.groupby('address_unlock').count()
-        maximo = stations.max()
-        most_pop = stations.sort_values(by='idBike',ascending = False)
-        most_pop = most_pop[most_pop == maximo].index
-        return int(maximo)
+        # se agrupan las estaciones y se cuenta el numero de viajes
+        station_counts = df.groupby('address_unlock').size()
+        # Encontrar el maximo
+        max_trip_count = station_counts.max()
+        return max_trip_count
     
 classBici = BiciMad(22,12)
 

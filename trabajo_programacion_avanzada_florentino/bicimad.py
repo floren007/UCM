@@ -1,5 +1,5 @@
 import pandas as pd
-from urlemt import UrlEMT,c5
+from urlemt import UrlEMT
 class BiciMad:
     def __init__(self, month: int, year: int):
         self._month = month
@@ -40,8 +40,6 @@ class BiciMad:
         dfSerie = pd.Series(valores,index = ['total_uses', 'total_time', 'most_popular_station', 'uses_from_most_popular'])
         
      
-        # Implement your data summarization logic here
-        pass
     @staticmethod
     def total_usage_month(df) -> pd.Series:
         df.index = pd.to_datetime(df.index)
@@ -53,14 +51,18 @@ class BiciMad:
         horasDias = df.groupby(df.index.date)['trip_minutes'].sum() / 60
         horasMes = horasDias.sum()
         return round(horasMes)
+    
     def most_popular_stations(df):
         stations = df.groupby('address_unlock').count()
         most_pop = stations.sort_values(by='idBike',ascending = False)
         return most_pop
+    
     def usage_from_most_popular_station(df) -> int:
         stations = df.groupby('address_unlock').count()
         most_pop = stations.sort_values(by='idBike',ascending = False)
         most_pop = most_pop['idBike']
         return most_pop.iloc[0]
+    
 classBici = BiciMad()
-classBici.clean()
+respect_nigga = classBici.get_data()
+print(respect_nigga)

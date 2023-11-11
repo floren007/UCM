@@ -36,9 +36,9 @@ class BiciMad:
         popularSatations = BiciMad.most_popular_stations(self._data)
         usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
 
-        valores = [totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
-        dfSerie = pd.Series(valores,index = ['total_uses', 'total_time', 'most_popular_station', 'uses_from_most_popular'])
-        
+        valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
+        dfSerie = pd.Series(valores,index = ['year','month','total_uses', 'total_time', 'most_popular_station', 'uses_from_most_popular'])
+        return dfSerie
      
     @staticmethod
     def total_usage_month(df) -> pd.Series:
@@ -63,6 +63,7 @@ class BiciMad:
         most_pop = most_pop['idBike']
         return most_pop.iloc[0]
     
-classBici = BiciMad()
-respect_nigga = classBici.get_data()
-print(respect_nigga)
+classBici = BiciMad(22,12)
+
+x = classBici.resume( )
+print(x)

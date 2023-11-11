@@ -1,4 +1,4 @@
-from bicimad_f.urlemt import UrlEMT
+from trabajo_programacion_avanzada_florentino.bicimad.urlemt import UrlEMT
 import io
 import requests
 
@@ -31,5 +31,7 @@ def test_get_url():
     assert url_valida == {"/trips_22_12"}
 
 def test_select_valid_urls():
+    class_emt = UrlEMT()
+    class_emt.select_valid_urls()
     comprobar = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
     assert comprobar.status_code == 200

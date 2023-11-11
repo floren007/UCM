@@ -65,5 +65,5 @@ class BiciMad:
     
 classBici = BiciMad(22,12)
 
-x = classBici.resume( )
+x = classBici.resume()
 print(x)

@@ -1,23 +1,23 @@
 import pandas as pd
 from urlemt import UrlEMT
 class BiciMad:
-    def __init__(self, month: int, year: int):
-        self._month = month
+    def __init__(self, year: int, month: int):
         self._year = year
-        self._data = self.get_data(month, year)
+        self._month = month
+        self._data = self.get_data(year, month)
 
     @staticmethod
-    def get_data(month: int, year: int) -> pd.DataFrame:
+    def get_data(year: int, month: int) -> pd.DataFrame:
         # creamos una instancia de la clase 
         uerlmt = UrlEMT()
         # llamamos a la funcion get_csv para que haga todo el proceso del script urlemt
-        url_emt = uerlmt.get_csv(month,year)
+        url_emt = uerlmt.get_csv(year,month)
         # leemos los datos devueltos en pandas dataframe y nos quedamos con lo que nos interesa
         df = pd.read_csv(url_emt,delimiter=';',index_col='unlock_date',encoding='utf-8', parse_dates=['unlock_date',
                                                                                                 'lock_date'],usecols=[ 'idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
-    'unlock_station_name', 'station_lock', 'lock_station_name'])
+        'unlock_station_name', 'station_lock', 'lock_station_name'])
         # devolvemos el dataftame como tal
-        return print(df.shape)
+        return df
 
     @property
     def data(self):
@@ -49,18 +49,14 @@ class BiciMad:
         dfSerie = pd.Series(valores,index = ['year','month','total_uses', 'total_time', 'most_popular_station', 'uses_from_most_popular'])
         # se retorna la serie
         return dfSerie
+    
+    
      
     @staticmethod
     def total_usage_month(df) -> pd.Series:
-        # hay que castear la fecha a datetime
-        # posteriormente lo pasamos a index 
-        df.index = pd.to_datetime(df.index)
-        # hacemos un groupby de las bicis que existen y el numero de bicis
         total_usos = df.groupby(df.index.date).size()
-        # por ultimo lo sumamos
         total = total_usos.sum()
         total_usos = int(total)
-        # hacemos un return del total de usos
         return total_usos
     
     def total_time(df) -> pd.Series:
@@ -73,25 +69,19 @@ class BiciMad:
     
     def most_popular_stations(df) -> pd.Series:
         # se agrupa por address_unlock y se cuenta el numero de estaciones
-        stations = df.groupby('address_unlock').sum()
+        stations = df.groupby('address_lock').sum()
         # Encontrar el maximo
         most_pop = stations.index.max()
         most_popular_stations = stations[stations == most_pop].index
         return set(most_popular_stations)   
-
-
-
-
-        return set(most_popular_stations)
     
     def usage_from_most_popular_station(df) -> int:
         # se agrupan las estaciones y se cuenta el numero de viajes
-        station_counts = df.groupby('address_unlock').size()
+        station_counts = df.groupby('address_lock').size()
         # Encontrar el maximo
         max_trip_count = station_counts.max()
         return max_trip_count
     
-classBici = BiciMad(22,12)
-#y = classBici.get_data(month=12,year=22)
+classBici = BiciMad(year=22,month=12)
 x = classBici.resume()
 print(x)

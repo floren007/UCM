@@ -1,6 +1,6 @@
 import requests
 import re
-from io import TextIOWrapper, BytesIO, StringIO
+from io import BytesIO, StringIO
 import pandas as pd
 import zipfile
 class UrlEMT:
@@ -23,7 +23,7 @@ class UrlEMT:
         return valid_links
 
 
-    def get_url(self, year, month) -> str:
+    def get_url(self, year, month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
         # hago un rango entre el año y los meses que nos interesan
         if month in range(1,13) and year in range(21,24):

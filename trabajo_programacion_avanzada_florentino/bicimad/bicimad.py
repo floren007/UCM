@@ -17,7 +17,7 @@ class BiciMad:
                                                                                                 'lock_date'],usecols=[ 'idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
         'unlock_station_name', 'station_lock', 'lock_station_name'])
         # devolvemos el dataftame como tal
-        return print(df.shape)
+        return df
 
     @property
     def data(self):

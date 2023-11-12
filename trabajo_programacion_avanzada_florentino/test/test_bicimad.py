@@ -11,9 +11,21 @@ def test_init():
     assert bici._data['dock_lock'].dtype is int
     assert bici._data['geolocation_unlock'].dtype is dict
     
-def test_get_data():
-    assert BiciMad.get_data(12,22) is pd.DataFrame
 
 def test_data():
     bici = BiciMad(month=12,year=22)
-    #assert bici.data.shape == 
+    assert bici.data.shape == "(493140, 14)"
+def test_type_resume():
+    bici = BiciMad(month=12,year=22)
+    assert bici.resume is pd.Series
+def test_data_is_null():
+    bici = BiciMad(month=12,year=22)
+    bici.clean()
+    assert bici._data.isnull().sum() == 0
+    
+def test_get_data():
+    assert BiciMad.get_data(month=12,year=22) is pd.DataFrame
+
+def test_total_time():
+    bici = BiciMad(month=12,year=22)
+    assert bici.total_time is pd.Series

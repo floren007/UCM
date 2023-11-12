@@ -17,7 +17,7 @@ class BiciMad:
                                                                                                 'lock_date'],usecols=[ 'idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
         'unlock_station_name', 'station_lock', 'lock_station_name'])
         # devolvemos el dataftame como tal
-        return df
+        return print(df.shape)
 
     @property
     def data(self):
@@ -54,7 +54,9 @@ class BiciMad:
      
     @staticmethod
     def total_usage_month(df) -> pd.Series:
+        # se agrupan las fechas
         total_usos = df.groupby(df.index.date).size()
+        # se suman y sacamos el numero
         total = total_usos.sum()
         total_usos = int(total)
         return total_usos
@@ -72,6 +74,7 @@ class BiciMad:
         stations = df.groupby('address_lock').sum()
         # Encontrar el maximo
         most_pop = stations.index.max()
+        # como sabemos el maximo pues lo buscamos por el index
         most_popular_stations = stations[stations == most_pop].index
         return set(most_popular_stations)   
     

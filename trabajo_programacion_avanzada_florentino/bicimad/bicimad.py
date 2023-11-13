@@ -44,7 +44,7 @@ class BiciMad:
         popularSatations = BiciMad.most_popular_stations(self._data)
         usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
         # creo un array con los valores que quiero introducir en la serie
-        valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
+        valores = [self.year,self.month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
         # se crea la serie con los valores expuestos anteriormente y con el indice
         dfSerie = pd.Series(valores,index = ['year','month','total_uses', 'total_time', 'most_popular_station', 'uses_from_most_popular'])
         # se retorna la serie

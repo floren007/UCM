@@ -66,7 +66,7 @@ class UrlEMT:
         else:
             ValueError("No has introducido el año o el mes correcto")
             # se hace un return del enlace encontrado
-        return url1
+        return print(url1)
     
     """
     Esta funcion sirve para hacer una peticion al servidor de la web EMT,

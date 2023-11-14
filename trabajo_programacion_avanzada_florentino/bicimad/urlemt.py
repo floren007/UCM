@@ -4,16 +4,29 @@ from io import BytesIO, StringIO
 import pandas as pd
 import zipfile
 class UrlEMT:
+    """
+    DOCSTRING:
+    Se crea la clase UrlEMT para recopilar todos los enlaces que haya en la web de la EMT
+    """
     # Creamos 2 constantes
     EMT = 'https://opendata.emtmadrid.es/'
     GENERAL = "/Datos-estaticos/Datos-generales-(1)"
     # se Crea el init pero como el enunciado dice que este vacio
+    """
+    La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
+    los enlaces validos que recoje de la web
+    """
     def __init__(self):
         # creo un atributo llamado valid_urls 
         # que llama a la funcion select_valid_urls
         self.enlaces_validos = UrlEMT.select_valid_urls()
         #  Esta funcion solo   agarrar los links que  son   validos
 
+    """
+    Esta funcion sirve para obtener todos los enalces de la web EMT
+
+    >>> set()
+    """
     @staticmethod
     def get_links(html_text):
         # Use regular expressions to find valid links
@@ -22,7 +35,13 @@ class UrlEMT:
         valid_links = set(re.findall(link_pattern, html_text))
         return valid_links
 
+    """
+    Esta funcion sirve filtrar los enlaces y quedarnos con el que nos interesa
+    para ello utilizo un patron que coincida que con los parametros que le hemos pasado
+    en mi caso seria month = 12 y year = 22
 
+    >>> str()
+    """
     def get_url(self, year, month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
         # hago un rango entre el año y los meses que nos interesan
@@ -44,12 +63,17 @@ class UrlEMT:
                     break
                 else:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
-                    
         else:
             ValueError("No has introducido el año o el mes correcto")
             # se hace un return del enlace encontrado
         return url1
-        
+    
+    """
+    Esta funcion sirve para hacer una peticion al servidor de la web EMT,
+    recoger el texto y mandarselo a la funcion get_links
+
+    >>> set()
+    """
     @staticmethod
     def select_valid_urls() -> set():
         try:
@@ -71,6 +95,12 @@ class UrlEMT:
         except ConnectionError as e:
             print(e)
 
+    """
+    Esta funcion sirve para llamar a diferentes funciones con el resultado final que devuelve los datos del csv
+    en fomato StringIO
+
+    >>> StringIO
+    """
     def get_csv(self, year, month) -> StringIO:
         url = self.get_url(year, month)
         # ahora con el enlace devuelto lo que hacemos es pasarselo a la funcion csv_from_zip
@@ -78,7 +108,13 @@ class UrlEMT:
         csv = UrlEMT.csv_from_zip(url)
         # se hace return de los datos del csv
         return csv
-        
+    
+    """
+    Esta funcion sirve para sacar los datos que hay dentro del csv.
+    Se retorna en formato StringIO
+
+    >>> StringIO
+    """    
     @staticmethod
     def csv_from_zip(url: str) -> StringIO:
         try:
@@ -100,7 +136,6 @@ class UrlEMT:
         return string_csv
 
 # creamos una instancia de la clase 
-
 emt_url = UrlEMT()
 year = 22
 month = 10

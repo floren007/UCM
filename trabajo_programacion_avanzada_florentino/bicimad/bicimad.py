@@ -1,11 +1,22 @@
 import pandas as pd
 from urlemt import UrlEMT
 class BiciMad:
+    """
+    La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
+    los enlaces validos que recoje de la web.
+    Los atributos year, month y data son privados
+    """
     def __init__(self, year: int, month: int):
         self._year = year
         self._month = month
         self._data = self.get_data(year, month)
 
+    """
+    Esta funcion devuelve los datos del csv que nosotros le pasamos por parametros con el mes y año.
+    Ojo nos lo devuelve en formato StringIO y aqui es donde se pasa a formato pandas Dataframe
+
+    >>> pd.Dataframe
+    """
     @staticmethod
     def get_data(year: int, month: int) -> pd.DataFrame:
         # creamos una instancia de la clase 
@@ -19,6 +30,9 @@ class BiciMad:
         # devolvemos el dataftame como tal
         return df
 
+    """
+    Esta funcion sirve para actualizar la variable data
+    """
     @property
     def data(self):
         return self._data
@@ -26,6 +40,11 @@ class BiciMad:
     def __str__(self):
         return str(self._data)
 
+    """
+    Esta funcion sirve para limpiar el dataframe de valores nulos y ademas casteamos algunas columnas a string
+
+    >>> pd.Dataframe
+    """
     def clean(self):
         # se hace la respectiva limpieza del dataframe
         # ponemos el dropnan y se eliminan os null
@@ -37,6 +56,11 @@ class BiciMad:
         df['station_unlock'].astype(str)
         return df
 
+    """
+    Esta funcion sirve para sacar un resumen de las consultas de bicimad
+
+    >>> pd.Serie
+    """
     def resume(self) -> pd.Series:
         # le pasamos a las distintas funciones los datos del csv
         totalUsosMes = BiciMad.total_usage_month(self._data)
@@ -51,7 +75,11 @@ class BiciMad:
         return dfSerie
     
     
-     
+    """
+    Esta funcion sirve para sacar el uso total de bicis en el mes
+
+    >>> int
+    """
     @staticmethod
     def total_usage_month(df) -> pd.Series:
         # se agrupan las fechas
@@ -61,6 +89,11 @@ class BiciMad:
         total_usos = int(total)
         return total_usos
     
+    """
+    Esta funcion calcula las horas de uso total en el mes
+
+    >>> int
+    """
     def total_time(df) -> pd.Series:
         # agrupar las fehcas para saca las horas
         horasDias = df.groupby(df.index.date)['trip_minutes'].sum() / 60
@@ -68,7 +101,11 @@ class BiciMad:
         horasMes = horasDias.sum()
         # se hace un return redoando para que salga entero
         return round(horasMes)
-    
+    """
+    Esta funcion saca las estaciones mas utilizadas en el mes
+
+    >>> set()
+    """
     def most_popular_stations(df) -> pd.Series:
         # se agrupa por address_unlock y se cuenta el numero de estaciones
         stations = df.groupby('address_lock').sum()
@@ -78,6 +115,11 @@ class BiciMad:
         most_popular_stations = stations[stations == most_pop].index
         return set(most_popular_stations)   
     
+    """
+    Esta funcion sirve para sacar el maximo de viajes que se ha echo en una estacion en el mes
+
+    >>> int
+    """
     def usage_from_most_popular_station(df) -> int:
         # se agrupan las estaciones y se cuenta el numero de viajes
         station_counts = df.groupby('address_lock').size()

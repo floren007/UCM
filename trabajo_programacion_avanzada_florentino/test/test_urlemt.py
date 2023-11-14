@@ -48,7 +48,8 @@ def test_get_url():
     assert url_valida == "https://opendata.emtmadrid.es//getattachment/7c0b2ce4-520d-4dc1-b29b-c5fa8e798e81/trips_22_10_October-csv.aspx"
 
 """
-Esta funcion sirve para comrpobar que el request que le estamos haciendo a la web EMT es funcional
+Esta funcion sirve para comrpobar que el request que le estamos haciendo a la web EMT es correcto
+si el servidor esta funcionando nos devolvera un 200 pero en cambio si el servidor se ha caido nos devolvera un 400
 """
 def test_select_valid_urls():
     class_emt = UrlEMT()

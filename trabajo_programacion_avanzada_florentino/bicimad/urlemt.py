@@ -66,7 +66,7 @@ class UrlEMT:
         else:
             ValueError("No has introducido el año o el mes correcto")
             # se hace un return del enlace encontrado
-        return print(url1)
+        return url1
     
     """
     Esta funcion sirve para hacer una peticion al servidor de la web EMT,
@@ -138,7 +138,7 @@ class UrlEMT:
 # creamos una instancia de la clase 
 emt_url = UrlEMT()
 year = 22
-month = 10
+month = 12
 
 try:
     # el retorno de esta funcion seria el csv en formato StringIO

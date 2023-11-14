@@ -102,7 +102,7 @@ class UrlEMT:
 # creamos una instancia de la clase  
 emt_url = UrlEMT()
 year = 22
-month = 12
+month = 10
 
 try:
     # el retorno de esta funcion seria el csv en formato StringIO

@@ -20,7 +20,7 @@ class UrlEMT:
         # creo un atributo llamado valid_urls 
         # que llama a la funcion select_valid_urls
         self.enlaces_validos = UrlEMT.select_valid_urls()
-        #  Esta funcion solo   agarrar los links que  son   validos
+        # Esta funcion solo agarra los links que  son   validos
 
     """
     Esta funcion sirve para obtener todos los enalces de la web EMT

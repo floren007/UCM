@@ -1,11 +1,14 @@
 from bicimad import BiciMad
 import pandas as pd
+import pytest
 import io
 """
 En este test, compruebo que los parametros son los correctos
 y ademas
 que algunas columnas tienen el tipo de dato correcto.
 """
+def test_testeo():
+    pass
 def test_init():
     bici = BiciMad(month=12,year=22)
     assert bici.__dict__['_month'] == 12
@@ -17,7 +20,9 @@ def test_init():
     assert bici._data['dock_lock'].dtype is int
     assert bici._data['geolocation_unlock'].dtype is dict
     
-
+"""
+Este test comprubea que la funcion resume devuelve un pandas Series
+"""
 def test_type_resume():
     bici = BiciMad(month=12,year=22)
     assert type(bici.resume) is pd.Series

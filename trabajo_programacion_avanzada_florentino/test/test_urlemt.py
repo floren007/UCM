@@ -1,5 +1,6 @@
-from bicimad.urlemt import UrlEMT
+from bicimad import UrlEMT
 import io
+import pytest
 import requests
 
 """

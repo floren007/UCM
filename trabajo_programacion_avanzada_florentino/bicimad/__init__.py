@@ -2,5 +2,5 @@
 Este modulo sirve para...
 """
 from .bicimad import BiciMad
-from bicimad import UrlEMT
+from .urlemt import UrlEMT
 

@@ -1,5 +1,5 @@
 import pandas as pd
-from urlemt import UrlEMT
+from .urlemt import UrlEMT
 class BiciMad:
     """
     La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar

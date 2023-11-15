@@ -64,9 +64,13 @@ class BiciMad:
     def resume(self) -> pd.Series:
         # le pasamos a las distintas funciones los datos del csv
         totalUsosMes = BiciMad.total_usage_month(self._data)
-        totalHoraMes = BiciMad.total_time(self._data)
-        popularSatations = BiciMad.most_popular_stations(self._data)
-        usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
+        #totalHoraMes = BiciMad.total_time(self._data)
+        totalHoraMes = self._data['trip_minutes'].sum()/60
+        #popularSatations = BiciMad.most_popular_stations(self._data)
+        popularSatations = self._data['station_lock'].mode().tolist()
+        #usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
+        usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
+
         # creo un array con los valores que quiero introducir en la serie
         valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
         # se crea la serie con los valores expuestos anteriormente y con el indice
@@ -94,13 +98,14 @@ class BiciMad:
 
     >>> int
     """
-    def total_time(df) -> pd.Series:
+    """
+    def total_time(df) -> int:
         # agrupar las fehcas para saca las horas
-        horasDias = df.groupby(df.index.date)['trip_minutes'].sum() / 60
+        horas_totales = df['trip_minutes'].sum() / 60
         # sumamos la horas
-        horasMes = horasDias.sum()
         # se hace un return redoando para que salga entero
-        return round(horasMes)
+        return round(horas_totales)
+    """
     """
     Esta funcion saca las estaciones mas utilizadas en el mes
 
@@ -129,4 +134,5 @@ class BiciMad:
     
 classBici = BiciMad(year=22,month=12)
 x = classBici.resume()
-print(x)
+y = classBici.get_data(month=12,year=22)
+print(y.dtypes)

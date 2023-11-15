@@ -7,9 +7,7 @@ name = "store"
 version = "0.0.1"
 requires-python = ">=3.9"
 authors = [
-	{name = 'Luis Llana', email = 'llana@ucm.es'},
-	{name = 'Carmelo Cotón', email = 'ccoton@patata.es'},
-	{name = 'Chema Pamundi', email = 'cpamundi@patata.es'}
+	{name = 'Florneitno Garcia Martinez', email = 'flgarc01@ucm.es'}
 ]
 
 dependencies = [ "requests ~= 2.1",

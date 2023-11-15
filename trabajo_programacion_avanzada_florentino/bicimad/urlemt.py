@@ -135,6 +135,11 @@ class UrlEMT:
             # se retorna el csv en formato StringIO
         return string_csv
 
+
+"""
+Example
+>>> UrlEMT(12,22)
+"""
 # creamos una instancia de la clase 
 emt_url = UrlEMT()
 year = 22

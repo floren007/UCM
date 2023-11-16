@@ -1,3 +1,5 @@
+from aiohttp import request
+
 from bicimad import UrlEMT
 import io
 import pytest
@@ -15,10 +17,10 @@ Esta funcion comprueba que el enlace que devuelve get_links es correcto
 """
 def test_url_get_links():
     class_emt = UrlEMT()
-    test_valido = """<a target="_blank" 
-    href="/getattachment/34b933e4-4756-4fed-8d5b-2d44f7503ccc/trips_22_12_December-csv.aspx" """
-    url_valida = class_emt.get_links(test_valido)
-    assert url_valida == {"/getattachment/34b933e4-4756-4fed-8d5b-2d44f7503ccc/trips_22_12_December-csv.aspx"}
+    req = requests.get(class_emt.EMT, class_emt.GENERAL)
+    html = req.text
+    url_valida = class_emt.get_links(html)
+    assert len(url_valida) == 21
 
 """
 Esta funcion comprueba que los datos devueltos del csv estan en formato StringIO
@@ -45,8 +47,8 @@ Esta funcion comprueba que la url que devuelve la funcion get_url es correcta
 """
 def test_get_url():
     class_emt = UrlEMT()
-    url_valida = class_emt.get_url(month=12,year=22)
-    assert url_valida == "https://opendata.emtmadrid.es//getattachment/7c0b2ce4-520d-4dc1-b29b-c5fa8e798e81/trips_22_10_October-csv.aspx"
+    url_valida = class_emt.get_url(month=12, year=22)
+    assert url_valida == "https://opendata.emtmadrid.es//getattachment/34b933e4-4756-4fed-8d5b-2d44f7503ccc/trips_22_12_December-csv.aspx"
 
 """
 Esta funcion sirve para comrpobar que el request que le estamos haciendo a la web EMT es correcto
@@ -56,4 +58,4 @@ def test_select_valid_urls():
     class_emt = UrlEMT()
     class_emt.select_valid_urls()
     comprobar = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
-    assert comprobar.status_code() == 200
+    assert comprobar.status_code == 200

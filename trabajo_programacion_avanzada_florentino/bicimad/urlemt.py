@@ -42,7 +42,7 @@ class UrlEMT:
 
     >>> str()
     """
-    def get_url(self, year, month):
+    def get_url(self,year,month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
         # hago un rango entre el año y los meses que nos interesan
         if month in range(1,13) and year in range(21,24):
@@ -75,7 +75,7 @@ class UrlEMT:
     >>> set()
     """
     @staticmethod
-    def select_valid_urls() -> set():
+    def select_valid_urls() -> set:
         try:
             # obtenemos el enlace de la web de bicimadrid
             response = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
@@ -101,7 +101,7 @@ class UrlEMT:
 
     >>> StringIO
     """
-    def get_csv(self, year, month) -> StringIO:
+    def get_csv(self,year,month) -> StringIO:
         url = self.get_url(year, month)
         # ahora con el enlace devuelto lo que hacemos es pasarselo a la funcion csv_from_zip
         # para que nos saque los datos del csv, en este caso nos lo va devolver en StringIO 
@@ -121,9 +121,9 @@ class UrlEMT:
             # le pasamos el enlace y lo que devuelve es a descarga del fichero
             file = requests.get(url)
             # ahora leemos el contenido en BytesIO
-            file_content =  BytesIO(file.content)
+            file_content = BytesIO(file.content)
             # con la libreria zipfile podemos leer el contenido
-            with zipfile.ZipFile(file_content,'r') as zp:
+            with zipfile.ZipFile(file_content, 'r') as zp:
                 # se que el csv se encuentra en la primera posicion
                 listar = zp.namelist()[0]
                 # lo leo y lo codifico a utf-8 para podeer leerlo correctamente
@@ -141,11 +141,12 @@ Example
 >>> UrlEMT(12,22)
 """
 # creamos una instancia de la clase 
-emt_url = UrlEMT()
+
 year = 22
 month = 12
 
 try:
+    emt_url = UrlEMT()
     # el retorno de esta funcion seria el csv en formato StringIO
     csv_file = emt_url.get_csv(year, month)
 except ValueError as e:

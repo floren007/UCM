@@ -1,5 +1,83 @@
 import scala.util.Random
 
+// Exercise 1
+/*Escribir en Scala el código equivalente a:
+for (int i=10; i>=0; i--) println(i) */
+
+for(x <- 10 to 0 by -1){
+  println(x)
+
+}
+
+// exercise 2
+
+/*Definir una función cuya firma es: countDown(n: Int): Unit. Esta función
+imprimirá los números de n a 0
+*/
+def countDown(n: Int): Unit = {
+  for(x <- n to 0 by -1){
+    println(x)
+  }
+}
+
+countDown(9)
+
+
+// Exercise 3
+/*Escribir el código que asigne a la variable 'a' una colección (da igual si se
+define para, Seq, List, Array) de n enteros aleatorios entre 0 (incluído) y n
+(excluido)
+*/
+
+val n = 2
+
+val a: List[Int] = List.fill(n) (Random.nextInt())
+println(a)
+
+// Exercise 4
+
+/*Dado una colección de enteros, se pide generar una nueva colección que
+contenga todos los números positivos de la colección original en el orden de la
+primera colección seguidos por los ceros y negativos, todos en su orden
+original*/
+
+
+
+val enteros: List[Int] = List(-1,2,-3,3,4,-5,6,-7,8,-9,2)
+val pos: List[Int] = enteros.filter(_>0)
+val neg: List[Int] = enteros.filter(_<0)
+val nueva: List[Int] = pos.concat(neg)
+println(nueva)
+
+
+// Exercise 5
+/*Definir una función que calcule la media de un Array[Double]*/
+
+def media(numbers: List[Double]): Unit = {
+  val entero: Double = numbers.sum / numbers.count(z => true)
+  println(entero)
+}
+val doble: List[Double] = List(1.2,1.2,3.4,4.3,6.2,8.9)
+media(doble)
+
+// Exercise 6
+/*Definir una función que reciba un argumento de tipo Array[Int] y devuelva un
+Array[Int] sin duplicados.*/
+def sinD(num: Array[Int]): Array[Int] ={
+  num.distinct
+}
+
+val d: Array[Int] = Array(1,2,1,2,4,5,6,2,3,5,6,7)
+val res2: Array[Int] = sinD(d)
+
+
+
+
+
+
+
+
+
 for (i <- 10 to 0 by -1){
   println(i)
 }
@@ -79,3 +157,10 @@ val cole: Array[Int] = Array(8,1,4,2,6,636,36,31,25,32)
 val res1: (Int,Int) = minmax(cole: Array[Int])
 
 // ejercicio 10
+
+def funcion(word: String): Unit = {
+
+}
+
+
+funcion("Albacete")

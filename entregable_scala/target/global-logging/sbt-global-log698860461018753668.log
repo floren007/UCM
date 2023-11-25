@@ -1,0 +1,83 @@
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.9.7 (Oracle Corporation Java 21)
+[debug]                   Load.loadUnit: plugins took 19.239ms
+[debug]                   Load.loadUnit: defsScala took 0.004ms
+[debug] [Loading] Scanning directory C:\Users\flore\.sbt\1.0\plugins
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\flore\.sbt\1.0\plugins, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 6.5651 ms
+[debug]                       Load.resolveProject(global-plugins) took 1.2042ms
+[debug]                     Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\flore\.sbt\1.0\plugins, plugins: List(<none>))) took 8.1432ms
+[debug] [Loading] Done in C:\Users\flore\.sbt\1.0\plugins, returning: (global-plugins)
+[debug]                   Load.loadUnit: loadedProjectsRaw took 9.1146ms
+[debug]                   Load.loadUnit: cleanEvalClasses took 0.0082ms
+[debug]                 Load.loadUnit(file:/C:/Users/flore/.sbt/1.0/plugins/, ...) took 29.0575ms
+[debug]               Load.apply: load took 30.0428ms
+[debug]               Load.apply: resolveProjects took 0.0848ms
+[debug]               Load.apply: finalTransforms took 5.4872ms
+[debug]               Load.apply: config.delegates took 0.2875ms
+[debug]               Load.apply: Def.make(settings)... took 45.5406ms
+[debug]               Load.apply: structureIndex took 15.9776ms
+[debug]               Load.apply: mkStreams took 0.0058ms
+[info] loading global plugins from C:\Users\flore\.sbt\1.0\plugins
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]             Load.defaultLoad until apply took 241.9415ms
+[debug]                       Load.loadUnit: plugins took 20.0817ms
+[debug]                       Load.loadUnit: defsScala took 0.0035ms
+[debug] [Loading] Scanning directory C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala\project
+[debug]                         Load.loadUnit: mkEval took 0.2889ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 2.6484 ms
+[info] loading settings for project entregable_scala-build from plugins.sbt,idea.sbt ...
+[debug]                           Load.resolveProject(entregable_scala-build) took 1.517ms
+[debug]                         Load.loadTransitive: finalizeProject(Project(id entregable_scala-build, base: C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala\project, plugins: List(<none>))) took 4.5288ms
+[debug] [Loading] Done in C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala\project, returning: (entregable_scala-build)
+[debug]                       Load.loadUnit: loadedProjectsRaw took 42.3674ms
+[debug]                       Load.loadUnit: cleanEvalClasses took 6.2814ms
+[debug]                     Load.loadUnit(file:/C:/Users/flore/OneDrive/Escritorio/UCM/entregable_scala/project/, ...) took 69.9344ms
+[debug]                   Load.apply: load took 71.1648ms
+[debug]                   Load.apply: resolveProjects took 0.0902ms
+[debug]                   Load.apply: finalTransforms took 6.9971ms
+[debug]                   Load.apply: config.delegates took 0.2591ms
+[debug]                   Load.apply: Def.make(settings)... took 54.7675ms
+[debug]                   Load.apply: structureIndex took 13.3762ms
+[debug]                   Load.apply: mkStreams took 0.0024ms
+[info] loading project definition from C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]                 Load.loadUnit: plugins took 275.7718ms
+[debug]                 Load.loadUnit: defsScala took 0.0043ms
+[debug] [Loading] Scanning directory C:\Users\flore\OneDrive\Escritorio\UCM\entregable_scala
+[debug]                   Load.loadUnit: mkEval took 0.2404ms
+[error] Type error in expression
+[debug] > Exec(loadFailed, None, None)
+[warn] Project loading failed: (r)etry, (q)uit, (l)ast, or (i)gnore? (default: r)

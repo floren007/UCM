@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a70f4c89-e11f-4aeb-9ea1-f36068c3875a" name="Changes" comment="entregable scala" />
+    <list default="true" id="a70f4c89-e11f-4aeb-9ea1-f36068c3875a" name="Changes" comment="entregable scala">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/ntic/entregable/FileUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/ntic/entregable/FileUtils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/ntic/entregable/leer.sc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/ntic/entregable/leer.sc" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,12 +31,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "floren007"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;floren007&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>

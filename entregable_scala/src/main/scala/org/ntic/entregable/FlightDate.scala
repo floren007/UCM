@@ -11,7 +11,7 @@ case class FlightDate(day: Int,
   //  si se llama varias veces a toString no se vuelva a calcular.
   //  Pista: usa interpolator `f` (ver https://docs.scala-lang.org/overviews/core/string-interpolation.html)
   //  Pista: conjuga lazy y la inmutabilidad
-  ???
+  override lazy val toString: String = f"$day%02d/$month%02d/$year%02d"
 }
 
 object FlightDate {
@@ -28,8 +28,11 @@ object FlightDate {
                                           //    de tipo `AssertionError` con el mensaje adecuado.
                                           //  Pista: usa assert (ver https://www.scala-lang.org/api/2.13.12/scala/Predef$.html)
                                           //  Pista: Ten en cuenta que según la documentación del dataset, el año mínimo es 1987
-                                          ???
-      case _ => throw new InvalidFormatException(s"$date tiene un formato inválido")
+        assert(day >= 1 && day <= 31, "Dias validos ente 1 y 31")
+        assert(month >= 1 && month <= 12, "Meses validos entre 1 y 12")
+        assert(year >= 1987, "El año debe ser mayor de 1987")
+        FlightDate(day, month, year)
+      case _ => throw new InvalidFormatException(s"Este date es invalido: $date")
     }
   }
 }

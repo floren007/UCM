@@ -1,4 +1,7 @@
-import org.ntic.entregable.Time
+package org.ntic.entregable
+
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 class TimeTest extends AnyFlatSpec with Matchers {
   "A org.ntic.entregable.Time" should "be correctly initialized from string" in {

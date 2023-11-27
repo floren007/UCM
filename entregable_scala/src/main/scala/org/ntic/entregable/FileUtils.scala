@@ -15,9 +15,9 @@ object FileUtils {
     //      número de headers (ver FlightsLoaderConfig)
     val fields = s.split(FlightsLoaderConfig.delimiter)
     if(s.isEmpty || fields.length != FlightsLoaderConfig.headersLength){
-      false
-    }else{
       true
+    }else{
+      false
     }
   }
 
@@ -28,7 +28,6 @@ object FileUtils {
      * @return Seq[org.ntic.entregable.Flight]
      */
     val linesList: List[String] =  fromFile(filePath).getLines.toList// TODO: Lee el fichero con Source.fromFile y obtén una lista de líneas
-    println(linesList)
     val headers = linesList.head // TODO: Obtén los headers del fichero csv
                       //  Pista: existen funciones de la clase List que te pueden ayudar
     val countHeader  = headers.split(FlightsLoaderConfig.delimiter).length
@@ -36,9 +35,11 @@ object FileUtils {
                   //  (ver FlightsLoaderConfig)
 
     val rows = linesList.tail  // TODO: Obtén las filas del fichero csv (sin los headers)
+    println(rows)
                     //  Pista: existen funciones de la clase List que te pueden ayudar
 
     val invalidRows: List[String] = rows.filter(isInvalid) // TODO: Obtén las filas inválidas.
+    println(invalidRows)
                                         //  Pista: usa la función isInvalid para filtrar
     val validRows: List[String] = rows.filterNot(isInvalid) // TODO: Obtén las filas válidas.
                                       //  Pista: usa la función isInvalid para filtrar
@@ -48,3 +49,4 @@ object FileUtils {
   }
 
 }
+

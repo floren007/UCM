@@ -45,7 +45,7 @@ object Flight {
 
 
   def fromString(flightInfoRow: String): Flight = {
-    val columns: Array[String] = ???  //  TODO: genera un array de Strings a partir de la variable flightInfoRow
+    val columns: Array[String] = flightInfoRow.split(FlightsLoaderConfig.delimiter)  //  TODO: genera un array de Strings a partir de la variable flightInfoRow
                                       //    Pista: usa el método split de la clase String
                                       //    Pista: el delimitador está en la configuración
     def getColValue(colName: String): String = {
@@ -60,7 +60,7 @@ object Flight {
       //    tiene como clave el nombre de la columna y como valor el índice de la columna
       //  Pista: puedes usar el método apply de la clase Array para obtener el valor de la columna
       //    del array de Strings `columns` usando el índice
-      ???
+      columns(FlightsLoaderConfig.columnIndexMap(colName))
     }
     val oriAirport = AirportInfo(
       airportId = getColValue("ORIGIN_AIRPORT_ID").toLong,

@@ -1,4 +1,9 @@
+package org.ntic.entregable
+
 import com.sun.media.sound.InvalidFormatException
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
 class FlightDateTest extends AnyFlatSpec with Matchers {
   "A org.ntic.entregable.FlightDate" should "be correctly initialized from string" in {

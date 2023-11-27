@@ -1,4 +1,7 @@
+package org.ntic.entregable
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 class FileUtilsTest extends AnyFlatSpec with Matchers {
   "A line from a file" should "be invalid if there are empty columns" in {

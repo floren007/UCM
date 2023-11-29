@@ -1,0 +1,143 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(early(addPluginSbtFile="""C:\Users\Florentino\AppData\Local\Temp\idea1.sbt"""), None, None)
+[debug] > Exec(addPluginSbtFile="""C:\Users\Florentino\AppData\Local\Temp\idea1.sbt""", None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.9.7 (Oracle Corporation Java 21.0.1)
+[debug]       Load.loadUnit: plugins took 201.7822ms
+[debug]       Load.loadUnit: defsScala took 1.9622ms
+[debug] [Loading] Scanning directory C:\Users\Florentino\.sbt\1.0\plugins
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Florentino\.sbt\1.0\plugins, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 22.0003 ms
+[debug]           Load.resolveProject(global-plugins) took 58.142ms
+[debug]         Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\Florentino\.sbt\1.0\plugins, plugins: List(<none>))) took 110.3622ms
+[debug] [Loading] Done in C:\Users\Florentino\.sbt\1.0\plugins, returning: (global-plugins)
+[debug]       Load.loadUnit: loadedProjectsRaw took 139.7678ms
+[debug]       Load.loadUnit: cleanEvalClasses took 0.318ms
+[debug]     Load.loadUnit(file:/C:/Users/Florentino/.sbt/1.0/plugins/, ...) took 357.2479ms
+[debug]   Load.apply: load took 622.4324ms
+[debug]   Load.apply: resolveProjects took 8.887ms
+[debug]   Load.apply: finalTransforms took 150.429ms
+[debug]   Load.apply: config.delegates took 16.8572ms
+[debug]   Load.apply: Def.make(settings)... took 766.0215ms
+[debug]   Load.apply: structureIndex took 202.2624ms
+[debug]   Load.apply: mkStreams took 1.5439ms
+[info] loading global plugins from C:\Users\Florentino\.sbt\1.0\plugins
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Load.defaultLoad until apply took 4015.8042ms
+[debug]           Load.loadUnit: plugins took 48.376ms
+[debug]           Load.loadUnit: defsScala took 0.0054ms
+[debug] [Loading] Scanning directory C:\Users\Florentino\Desktop\UCM\entregable_scala\project
+[debug]             Load.loadUnit: mkEval took 6.8196ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Florentino\Desktop\UCM\entregable_scala\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 2.8785 ms
+[info] loading settings for project entregable_scala-build from plugins.sbt,idea1.sbt ...
+[debug]               Load.resolveProject(entregable_scala-build) took 7.6848ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id entregable_scala-build, base: C:\Users\Florentino\Desktop\UCM\entregable_scala\project, plugins: List(<none>))) took 11.333ms
+[debug] [Loading] Done in C:\Users\Florentino\Desktop\UCM\entregable_scala\project, returning: (entregable_scala-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 230.0332ms
+[debug]           Load.loadUnit: cleanEvalClasses took 13.385ms
+[debug]         Load.loadUnit(file:/C:/Users/Florentino/Desktop/UCM/entregable_scala/project/, ...) took 293.072ms
+[debug]       Load.apply: load took 296.789ms
+[debug]       Load.apply: resolveProjects took 0.2077ms
+[debug]       Load.apply: finalTransforms took 15.4833ms
+[debug]       Load.apply: config.delegates took 0.6852ms
+[debug]       Load.apply: Def.make(settings)... took 184.4702ms
+[debug]       Load.apply: structureIndex took 79.8462ms
+[debug]       Load.apply: mkStreams took 0.0037ms
+[info] loading project definition from C:\Users\Florentino\Desktop\UCM\entregable_scala\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]     Load.loadUnit: plugins took 1549.5065ms
+[debug]     Load.loadUnit: defsScala took 0.0043ms
+[debug] [Loading] Scanning directory C:\Users\Florentino\Desktop\UCM\entregable_scala
+[debug]       Load.loadUnit: mkEval took 0.3307ms
+[debug] [Loading] Found root project root w/ remaining 
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbtassembly.AssemblyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.StructurePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.IdeaShellPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbtassembly.AssemblyPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.StructurePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.IdeaShellPlugin)))
+[debug] Clause(And(Set(Atom(sbt.plugins.CorePlugin), Atom(sbt.plugins.JvmPlugin))),Set(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,sbtassembly.AssemblyPlugin,org.jetbrains.sbt.IdeaShellPlugin,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin)
+[debug] Plugins.deducer#function took 5.2819 ms
+[info] loading settings for project root from build.sbt ...
+[debug]         Load.resolveProject(root) took 37.4477ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\Florentino\Desktop\UCM\entregable_scala, plugins: List(<none>))) took 45.11ms
+[debug] [Loading] Done in C:\Users\Florentino\Desktop\UCM\entregable_scala, returning: (root)
+[debug]     Load.loadUnit: loadedProjectsRaw took 220.47ms
+[debug]     Load.loadUnit: cleanEvalClasses took 22.1672ms
+[debug]   Load.loadUnit(file:/C:/Users/Florentino/Desktop/UCM/entregable_scala/, ...) took 1793.4286ms
+[debug] Load.apply: load took 1797.952ms
+[debug] Load.apply: resolveProjects took 0.1492ms
+[debug] Load.apply: finalTransforms took 42.0358ms
+[debug] Load.apply: config.delegates took 1.026ms
+[debug] Load.apply: Def.make(settings)... took 147.1883ms
+[debug] Load.apply: structureIndex took 65.6727ms
+[debug] Load.apply: mkStreams took 0.0023ms
+[info] set current project to entregable_scala (in build file:/C:/Users/Florentino/Desktop/UCM/entregable_scala/)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(notifyUsersAboutShell, None, None)
+[debug] > Exec(iflast shell, None, None)
+[debug] > Exec(; set ideaPort in Global := 52487 ; idea-shell, None, None)
+[debug] > Exec(set ideaPort in Global := 52487, None, None)
+[info] Defining Global / ideaPort
+[info] The new value will be used by Compile / compile, Test / compile
+[debug] Defining 
+[debug] 	Global / ideaPort
+[debug] 
+[debug] The new value will be used by 
+[debug] 	Compile / compile
+[debug] 	Test / compile
+[info] Reapplying settings...
+[info] set current project to entregable_scala (in build file:/C:/Users/Florentino/Desktop/UCM/entregable_scala/)
+[debug] > Exec(idea-shell, None, None)

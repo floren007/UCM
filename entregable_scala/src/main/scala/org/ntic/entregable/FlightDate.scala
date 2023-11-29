@@ -2,6 +2,8 @@ package org.ntic.entregable
 
 import com.sun.media.sound.InvalidFormatException
 
+import java.lang.AssertionError
+
 case class FlightDate(day: Int,
                       month: Int,
                       year: Int) {
@@ -22,17 +24,23 @@ object FlightDate {
      * @return org.ntic.entregable.FlightDate
      */
     date.split(" ").head.split("/").map(x => x.toInt).toList match {
-      case day :: month :: year :: Nil => // TODO: Comprueba que el día, mes y año son correctos y si lo son devuelve
+      case month :: day :: year :: Nil => // TODO: Comprueba que el día, mes y año son correctos y si lo son devuelve
                                           //    un objeto de org.ntic.entregable.FlightDate con esos valores.
                                           //    Si no son correctos asegúrate que el programa lance lanza una excepción
                                           //    de tipo `AssertionError` con el mensaje adecuado.
                                           //  Pista: usa assert (ver https://www.scala-lang.org/api/2.13.12/scala/Predef$.html)
                                           //  Pista: Ten en cuenta que según la documentación del dataset, el año mínimo es 1987
-        assert(day >= 1 && day <= 31, "Dias validos ente 1 y 31")
-        assert(month >= 1 && month <= 12, "Meses validos entre 1 y 12")
-        assert(year >= 1987, "El año debe ser mayor de 1987")
-        FlightDate(day, month, year)
-      case _ => throw new InvalidFormatException(s"Este date es invalido: $date")
+        println(s"El dia: $day, el mes: $month, el año: $year")
+        try{
+          assert(day >= 1 && day <= 31, "Dias validos ente 1 y 31")
+          assert(month >= 1 && month <= 12, "Meses validos entre 1 y 12")
+          assert(year >= 1987, "El año debe ser mayor de 1987")
+          FlightDate(day, month, year)
+        }catch {
+          case _ => throw new AssertionError(s"Este date es invalido: $date")
+        }
+
+      //case _ => throw new AssertionError(s"Este date es invalido: $date")
     }
   }
 }

@@ -8,18 +8,18 @@ case class Flight(flDate: String,
                   scheduledDepTime: Time,
                   scheduledArrTime: Time,
                   depDelay: Double,
-                  arrDelay: Double)  {
+                  arrDelay: Double)  extends Ordered[Flight]{
 
-  val flightDate: FlightDate = FlightDate.fromString(flDate)  // TODO: define el campo flightDate (perezoso e inmutable) de tipo org.ntic.entregable.FlightDate a partir del campo flDate
+  lazy val flightDate: FlightDate = FlightDate.fromString(flDate)  // TODO: define el campo flightDate (perezoso e inmutable) de tipo org.ntic.entregable.FlightDate a partir del campo flDate
                                     //    que es de tipo String.
                                     //    Pista: usa el método fromString de org.ntic.entregable.FlightDate
 
-  val actualDepTime: Time = Time.fromMinutes((scheduledDepTime.minutes + depDelay).toInt) //  TODO: define el campo actualDepTime (perezoso e inmutable) de tipo org.ntic.entregable.Time a partir de los campos
+  lazy val actualDepTime: Time = Time.fromMinutes((scheduledDepTime.minutes + depDelay).toInt) //  TODO: define el campo actualDepTime (perezoso e inmutable) de tipo org.ntic.entregable.Time a partir de los campos
                                 //    Ten en cuenta que este campo debe representar la hora de salida real del vuelo, esto quiere decir que debe
                                 //    tener en cuenta el retraso, el campo depDelay representa el retraso en minutos, puede ser negativo y es Double.
                                 //    Pista: usa el método fromMinutes de org.ntic.entregable.Time
 
-  val  actualArrTime: Time = Time.fromMinutes((scheduledArrTime.minutes + arrDelay).toInt) //  TODO: define el campo actualArrTime (perezoso e inmutable) de tipo org.ntic.entregable.Time a partir de los campos
+  lazy val  actualArrTime: Time = Time.fromMinutes((scheduledArrTime.minutes + arrDelay).toInt) //  TODO: define el campo actualArrTime (perezoso e inmutable) de tipo org.ntic.entregable.Time a partir de los campos
                                 //    scheduledArrTime y arrDelay.
                                 //    Ten en cuenta que este campo debe representar la hora de llegada real del vuelo, esto quiere decir que debe
                                 //    tener en cuenta el retraso, el campo arrDelay representa el retraso en minutos, puede ser negativo y es Double.
@@ -35,9 +35,9 @@ case class Flight(flDate: String,
   //    atributo actualArrTime de la clase que se le pasa como parámetro
   //  Pista: actualArrTime es de tipo org.ntic.entregable.Time
   // Implementación del método compare del trait Ordered
-  def compare(that: Flight): Int = {
-    this.actualArrTime.compare(that.actualArrTime)
-  }
+  ///def compare(that: Flight): Int = {
+  override def compare(that: Flight): Int =  this.actualArrTime.compare(that.actualArrTime)
+  //}
 }
 
 

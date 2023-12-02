@@ -28,6 +28,7 @@ object FlightsLoader extends App {
                                               //  Pista: para que la función sorted funcione, debes implementar el trait Ordered en la clase org.ntic.entregable.Flight
 
     val flightObjPath: String = s"${FlightsLoaderConfig.outputDir}/$origin.obj" // TODO: Crea el path del fichero de salida para los vuelos no retrasados
+    println(flightObjPath)
                                     //  Pista: el path debe concatenar el directorio de salida (outputDir) con el origen
                                     //  del vuelo y la extensión .obj
     val delayedFlightsObj: String = s"${FlightsLoaderConfig.outputDir}/${origin}_delayed.obj" // TODO: Crea el path del fichero de salida para los vuelos retrasados

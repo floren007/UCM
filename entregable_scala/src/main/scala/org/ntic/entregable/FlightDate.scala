@@ -13,6 +13,9 @@ case class FlightDate(day: Int,
   //  si se llama varias veces a toString no se vuelva a calcular.
   //  Pista: usa interpolator `f` (ver https://docs.scala-lang.org/overviews/core/string-interpolation.html)
   //  Pista: conjuga lazy y la inmutabilidad
+  // lazy que sea perezoso
+  // uso interpolator para escribir variables dentro de un string
+  // pongo las variables en orden
   override lazy val toString: String = f"$day%02d/$month%02d/$year%02d"
 }
 
@@ -24,13 +27,13 @@ object FlightDate {
      * @return org.ntic.entregable.FlightDate
      */
     date.split(" ").head.split("/").map(x => x.toInt).toList match {
-      case month :: day :: year :: Nil => // TODO: Comprueba que el día, mes y año son correctos y si lo son devuelve
-                                          //    un objeto de org.ntic.entregable.FlightDate con esos valores.
-                                          //    Si no son correctos asegúrate que el programa lance lanza una excepción
-                                          //    de tipo `AssertionError` con el mensaje adecuado.
-                                          //  Pista: usa assert (ver https://www.scala-lang.org/api/2.13.12/scala/Predef$.html)
-                                          //  Pista: Ten en cuenta que según la documentación del dataset, el año mínimo es 1987
+      // he tenido que cambiar la posicion month por day, ya que en el csv primero va el mes
+      // despues el dia y ultimo el año
+      case month :: day :: year :: Nil =>
         println(s"El dia: $day, el mes: $month, el año: $year")
+        // utilizo un try catch, para que agarre el error sin interrumpir la ejecucion
+        // compruebo que las fechas son correctas con los assert
+        // hago un return de FlightDate con la fecha como parametros
         try{
           assert(day >= 1 && day <= 31, "Dias validos ente 1 y 31")
           assert(month >= 1 && month <= 12, "Meses validos entre 1 y 12")
@@ -39,8 +42,6 @@ object FlightDate {
         }catch {
           case _ => throw new AssertionError(s"Este date es invalido: $date")
         }
-
-      //case _ => throw new AssertionError(s"Este date es invalido: $date")
     }
   }
 }

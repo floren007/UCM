@@ -41,11 +41,8 @@ object Flight {
        * @param colName: String name of the column
        * @return String value of the column
        */
-      // TODO: Implementar esta función
-      //  Pista: usa el mapa columnIndexMap de la clase FlightsLoaderConfig,
-      //    tiene como clave el nombre de la columna y como valor el índice de la columna
-      //  Pista: puedes usar el método apply de la clase Array para obtener el valor de la columna
-      //    del array de Strings `columns` usando el índice
+
+      // obtengo el valor de cada columna usando el indice
       columns(FlightsLoaderConfig.columnIndexMap(colName))
     }
     val oriAirport = AirportInfo(

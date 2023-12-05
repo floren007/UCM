@@ -19,22 +19,17 @@ case class Time(hours: Int, minutes: Int) extends Ordered[Time] {
 object Time {
 
   val totalMinutesInADay = 1440
+
   def fromString(timeStr: String): Time = {
     val formatted: String = f"${timeStr.toInt}%04d"
-    val hours: Int = formatted.substring(0, 2).toInt  // TODO: Extraer las horas de la variable `formatted`, que es un String de 4 caracteres: HHMM
+    // para poder extraer las horas utilizo la funcion substring y como se que las horas son las 2 primeros
+    val hours: Int = formatted.substring(0, 2).toInt
 
-                          //  Pista: puedes usar el método `substring` de la clase String,
-                          //    revisa el dataset para entender el formato de la variable
-                          //  Pista: puedes usar el método `toInt` de la clase String
-                          //  Pista: recuerda que las horas deben estar entre 0 y 23
-    val minutes: Int = formatted.substring(2, 4).toInt  // TODO: Extraer los minutos de la variable `formatted`, que es un String de 4 caracteres: HHMM
+    // extraigo las horas al igual que lo minutos mediente la funcion substring
+    val minutes: Int = formatted.substring(2, 4).toInt
 
-                            //  Pista: puedes usar el método `substring` de la clase String,
-                            //    revisa el dataset para entender el formato de la variable
-                            //  Pista: puedes usar el método `toInt` de la clase String
-                            //  Pista: recuerda que los minutos deben estar entre 0 y 59
-    Time(hours, minutes) // TODO: Devuelve un objeto org.ntic.entregable.Time con las horas y minutos extraídos
-
+    // devuelvo el objeto Time con los parametros hours y minutes
+    Time(hours, minutes)
   }
 
   def fromMinutes(minutes: Int): Time = {

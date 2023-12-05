@@ -8,11 +8,6 @@ case class FlightDate(day: Int,
                       month: Int,
                       year: Int) {
 
-  // TODO: Sobreescribir el método toString para que devuelva la fecha en formato dd/mm/yy. Al sobreescribirlo haz que
-  //  sea peresozo y sólo se calcule cuando se llame a toString, pero además que se calcule una única vez de forma que
-  //  si se llama varias veces a toString no se vuelva a calcular.
-  //  Pista: usa interpolator `f` (ver https://docs.scala-lang.org/overviews/core/string-interpolation.html)
-  //  Pista: conjuga lazy y la inmutabilidad
   // lazy que sea perezoso
   // uso interpolator para escribir variables dentro de un string
   // pongo las variables en orden

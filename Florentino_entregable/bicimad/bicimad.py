@@ -1,5 +1,5 @@
 import pandas as pd
-from .urlemt import UrlEMT
+from urlemt import UrlEMT
 class BiciMad:
     """
     La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
@@ -9,7 +9,7 @@ class BiciMad:
     def __init__(self, year: int, month: int):
         self._year = year
         self._month = month
-        self._data = self.get_data(year, month)
+        self._data = BiciMad.get_data(year, month)
 
     """
     Esta funcion devuelve los datos del csv que nosotros le pasamos por parametros con el mes y año.

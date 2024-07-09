@@ -24,8 +24,8 @@ class BiciMad:
         # llamamos a la funcion get_csv para que haga todo el proceso del script urlemt
         url_emt = uerlmt.get_csv(year,month)
         # leemos los datos devueltos en pandas dataframe y nos quedamos con lo que nos interesa
-        df = pd.read_csv(url_emt,delimiter=';',index_col='unlock_date',encoding='utf-8', parse_dates=['unlock_date',
-                                                                                                'lock_date'],usecols=[ 'idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
+        df = pd.read_csv(url_emt,delimiter=';',index_col='fecha',encoding='utf-8', parse_dates=['fecha','unlock_date',
+                                                                                                'lock_date'],usecols=['fecha','idBike', 'fleet', 'trip_minutes', 'geolocation_unlock', 'address_unlock', 'unlock_date', 'locktype', 'unlocktype', 'geolocation_lock', 'address_lock', 'lock_date', 'station_unlock',
         'unlock_station_name', 'station_lock', 'lock_station_name'])
         # devolvemos el dataftame como tal
         return df
@@ -50,10 +50,10 @@ class BiciMad:
         # ponemos el dropnan y se eliminan os null
         df = self._data.dropna(how='all')
         # casteamos las columnas a string
-        df['fleet'].astype(str)
-        df['idBike'].astype(str)
-        df['station_lock'].astype(str)
-        df['station_unlock'].astype(str)
+        df['fleet'] = df['fleet'].astype(str)
+        df['fleet'] = df['idBike'].astype(str)
+        df['station_lock'] = df['station_lock'].astype(str)
+        df['station_unlock'] = df['station_unlock'].astype(str)
         return df
 
     """
@@ -133,6 +133,7 @@ class BiciMad:
         return max_trip_count
     
 classBici = BiciMad(year=22,month=12)
-x = classBici.resume()
-y = classBici.get_data(month=12,year=22)
-print(y.dtypes)
+classBici.get_data(month=12,year=22)
+classBici.clean()
+classBici.resume()
+

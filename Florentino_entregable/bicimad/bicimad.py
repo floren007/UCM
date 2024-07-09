@@ -45,7 +45,7 @@ class BiciMad:
 
     >>> pd.Dataframe
     """
-    def clean(self):
+    def clean(self) -> pd.DataFrame:
         # se hace la respectiva limpieza del dataframe
         # ponemos el dropnan y se eliminan os null
         df = self._data.dropna(how='all')
@@ -61,15 +61,19 @@ class BiciMad:
 
     >>> pd.Serie
     """
-    def resume(self) -> pd.Series:
+    def resume(self,df) -> pd.Series:
         # le pasamos a las distintas funciones los datos del csv
         totalUsosMes = BiciMad.total_usage_month(self._data)
-        #totalHoraMes = BiciMad.total_time(self._data)
+       
         totalHoraMes = self._data['trip_minutes'].sum()/60
-        #popularSatations = BiciMad.most_popular_stations(self._data)
-        popularSatations = self._data['station_lock'].mode().tolist()
-        #usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
-        usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
+
+        popularSatations = BiciMad.most_popular_stations(self._data)
+
+        #popularSatations = self._data['station_lock'].mode().tolist()
+
+        usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
+
+        #usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
 
         # creo un array con los valores que quiero introducir en la serie
         valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
@@ -132,8 +136,9 @@ class BiciMad:
         max_trip_count = station_counts.max()
         return max_trip_count
     
-classBici = BiciMad(year=22,month=12)
-classBici.get_data(month=12,year=22)
-classBici.clean()
-classBici.resume()
-
+# classBici = BiciMad(year=22,month=12)
+# classBici.get_data(month=12,year=22)
+# datos = classBici.clean()
+# print(datos)
+# datosResumidos = classBici.resume(datos)
+# print(datosResumidos)

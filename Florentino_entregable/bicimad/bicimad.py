@@ -1,5 +1,5 @@
 import pandas as pd
-from urlemt import UrlEMT
+from .urlemt import UrlEMT
 class BiciMad:
     """
     La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
@@ -71,11 +71,9 @@ class BiciMad:
 
         popularSatations = BiciMad.most_popular_stations(self._data)
 
-        #popularSatations = self._data['station_lock'].mode().tolist()
+        usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
 
-        #usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
-
-        usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
+        #usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
 
         # creo un array con los valores que quiero introducir en la serie
         valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
@@ -105,14 +103,6 @@ class BiciMad:
     >>> int
     """
     """
-    def total_time(df) -> int:
-        # agrupar las fehcas para saca las horas
-        horas_totales = df['trip_minutes'].sum() / 60
-        # sumamos la horas
-        # se hace un return redoando para que salga entero
-        return round(horas_totales)
-    """
-    """
     Esta funcion saca las estaciones mas utilizadas en el mes
 
     >>> set()
@@ -121,12 +111,6 @@ class BiciMad:
         # se agrupa por lock_station_name y se cuenta el numero de estaciones
         estaciones_usos = df['lock_station_name'].value_counts()
         listado = estaciones_usos.head()
-        #estacion_mayor_usos = estaciones_usos.idxmax()
-        #stations = df.groupby('lock_station_name').size()
-        # Encontrar el maximo
-        #most_pop = stations.index.max()
-        # como sabemos el maximo pues lo buscamos por el index
-        #most_popular_stations = stations[stations == most_pop].index
         return set(listado.index)   
     
     """
@@ -136,14 +120,13 @@ class BiciMad:
     """
     def usage_from_most_popular_station(df) -> int:
         # se agrupan las estaciones y se cuenta el numero de viajes
-        station_counts = df.groupby('address_lock').size()
-        # Encontrar el maximo
-        max_trip_count = station_counts.max()
-        return max_trip_count
+        estaciones_usos = df['lock_station_name'].value_counts()
+        listado = estaciones_usos.head()
+        return set(listado.values)
     
-classBici = BiciMad(year=22,month=12)
-classBici.get_data(month=12,year=22)
-datos = classBici.clean()
-print(datos)
-datosResumidos = classBici.resume()
-print(datosResumidos)
+# classBici = BiciMad(year=22,month=12)
+# classBici.get_data(month=12,year=22)
+# datos = classBici.clean()
+# print(datos)
+# datosResumidos = classBici.resume()
+# print(datosResumidos)

@@ -45,6 +45,9 @@ class UrlEMT:
     def get_url(self,year,month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
         # hago un rango entre el año y los meses que nos interesan
+
+        # Inicio de variable donde encuentra las url
+        #urlEncontrado = None
         if month in range(1,13) and year in range(21,24):
             # con un patron que he creado, el cual le paso el año y el mes como si fuera un enlace
             # de string para posteriormente con la libreria search buscar ese patron entre todos los enlaces
@@ -58,15 +61,16 @@ class UrlEMT:
                     # para devolver el enlace totalmente correcto y listo para descargar
                     # para ello le sumamos el enlace de la pagina de bicimadrid como suijo
                     # y como prefijo el enlace descargado
-                    url1 = self.EMT+url
-                    print(f"Coincidió esta URL: {url1}")
-                    break
+                    urlEncontrado = self.EMT+url
+                    print(f"Coincidió esta URL: {urlEncontrado}")
+                    return urlEncontrado
+                    #break
                 else:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
         else:
             ValueError("No has introducido el año o el mes correcto")
-            # se hace un return del enlace encontrado
-        return url1
+          
+        #return urlEncontrado
     
     """
     Esta funcion sirve para hacer una peticion al servidor de la web EMT,
@@ -142,12 +146,12 @@ Example
 """
 # creamos una instancia de la clase 
 
-year = 22
-month = 12
+# year = 22
+# month = 12
 
-try:
-    emt_url = UrlEMT()
-    # el retorno de esta funcion seria el csv en formato StringIO
-    csv_file = emt_url.get_csv(year, month)
-except ValueError as e:
-    print(e)
+# try:
+#     emt_url = UrlEMT()
+#     # el retorno de esta funcion seria el csv en formato StringIO
+#     csv_file = emt_url.get_csv(year, month)
+# except ValueError as e:
+#     print(e)

@@ -122,9 +122,4 @@ class BiciMad:
         listado = estaciones_usos.head()
         return set(listado.values)
     
-# classBici = BiciMad(year=22,month=12)
-# classBici.get_data(month=12,year=22)
-# datos = classBici.clean()
-# print(datos)
-# datosResumidos = classBici.resume()
-# print(datosResumidos)
+

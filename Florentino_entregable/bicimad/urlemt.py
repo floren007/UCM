@@ -1,7 +1,6 @@
 import requests
 import re
 from io import BytesIO, StringIO
-import pandas as pd
 import zipfile
 class UrlEMT:
     """
@@ -144,14 +143,3 @@ class UrlEMT:
 Example
 >>> UrlEMT(12,22)
 """
-# creamos una instancia de la clase 
-
-# year = 22
-# month = 12
-
-# try:
-#     emt_url = UrlEMT()
-#     # el retorno de esta funcion seria el csv en formato StringIO
-#     csv_file = emt_url.get_csv(year, month)
-# except ValueError as e:
-#     print(e)

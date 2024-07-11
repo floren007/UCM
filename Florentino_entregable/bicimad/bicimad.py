@@ -73,8 +73,6 @@ class BiciMad:
 
         usesFromMostPopular = BiciMad.usage_from_most_popular_station(self._data)
 
-        #usesFromMostPopular = self._data[self._data['station_lock'].isin(popularSatations)].shape[0]
-
         # creo un array con los valores que quiero introducir en la serie
         valores = [self._year,self._month,totalUsosMes,totalHoraMes,popularSatations,usesFromMostPopular]
         # se crea la serie con los valores expuestos anteriormente y con el indice

@@ -105,7 +105,7 @@ class BiciMad:
 
     >>> set()
     """
-    def most_popular_stations(df) -> pd.Series:
+    def most_popular_stations(df: pd.DataFrame) -> pd.Series:
         # se agrupa por lock_station_name y se cuenta el numero de estaciones
         estaciones_usos = df['lock_station_name'].value_counts()
         listado = estaciones_usos.head()

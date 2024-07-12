@@ -13,20 +13,14 @@ class BiciMad:
         Los atributos year, month y data son privados
         :param year: int
             año del csv que se quiere buscar
-        :return: None
-            no retorna nada porque es solo un parametro de input
         :param month:
             mes del csv que se quiere buscar
         :return: None
-            no retorna nada porque es solo un parametro de input
-        
-      
-        """
-        
+            no retorna nada porque es solo un parametro de input  
+        """ 
         self._year = year
         self._month = month
         self._data = BiciMad.get_data(year, month)
-
    
     @staticmethod
     def get_data(year: int, month: int) -> pd.DataFrame:
@@ -34,16 +28,14 @@ class BiciMad:
         La funcion get_data() se utiliza para extraer un dataframe del servidor de Bicimad, para ello se les pasa los parametros year y month para que extraiga el csv y posteriormente lo pase a un dataframe
         :param year: int
             año del csv que se quiere buscar
-        :return: None
-            no retorna nada porque es solo un parametro de input
         :param month:
             mes del csv que se quiere buscar
-        :return: None
-            no retorna nada porque es solo un parametro de input
+        :return: pd.Dataframe
+            retorna un epl dataframe con los datos legibles
 
-        >>> Bicimad.get_data(12,22)
+        >>> Bicimad.get_data(22,12)
             pd.Dataframe
-            retorna un dataframe con los datos del csv
+            
         """
         # creamos una instancia de la clase 
         uerlmt = UrlEMT()
@@ -92,6 +84,7 @@ class BiciMad:
         Esta funcion sirve para sacar un resumen de las consultas de bicimad
         :param self: class bicimad
         :return: pd.Series
+            Retorna un pd.Series con el resumen de las consultas bicimad
         >>> resume(self)
         pd.Series
         """
@@ -121,7 +114,9 @@ class BiciMad:
         """
         Esta funcion sirve para sacar el uso total de bicis en el mes
         :param df: pd.Dataframe
+            Dataframe de los datos Bicimad
         :return: pd.Series
+            retorna un pd.Series con la informacion
 
         >>> total_usage_month(pd.Dataframe)
             pd.Series(Series del total de bicis)
@@ -140,7 +135,9 @@ class BiciMad:
         """
         Esta funcion saca el conjunto de estaciones de bloqueo con mayor número de usos
         :param df: pd.Dataframe
+            Dataframe de los datos Bicimad
         :return: pd.Series
+            Retorna un pd.Series con la informacion
         >>> most_popular_stations(pd.Dataframe)
         pd.Series(estacion de bloqueo con mayor numero de usos)
         """
@@ -154,7 +151,9 @@ class BiciMad:
         """
         Esta funcion saca el número de usos de dichas estaciones
         :param df: pd.Dataframe
+            Dataframe de los datos de Bicimad
         :return: int
+            Retorna tan solo un int que es la estacion más usada, el enunciado esta confuso, porque algunos compañeros lo entienden en singular y otros en plural
 
         >>> usage_from_most_popular_station(pd.Dataframe)
         int(34555)

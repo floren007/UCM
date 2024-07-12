@@ -31,7 +31,7 @@ En esta funcion compruebo que las dimensiones del dataframe son correctas
 """
 def test_data():
     bici = BiciMad(month=12,year=22)
-    assert bici.data.shape == (493140, 14)
+    assert bici.data.shape == (493140, 15)
 
 """
 En esta funcion compruebo que el dataframe ya no tiene valores nulos
@@ -54,3 +54,5 @@ def test_total_time():
     bici = BiciMad(month=12,year=22)
     assert isinstance(bici.get_data(month=12,year=22), pd.DataFrame)
     assert isinstance(bici.most_popular_stations(), set)
+
+

@@ -11,37 +11,53 @@ class UrlEMT:
     EMT = 'https://opendata.emtmadrid.es/'
     GENERAL = "/Datos-estaticos/Datos-generales-(1)"
     # se Crea el init pero como el enunciado dice que este vacio
-    """
-    La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
-    los enlaces validos que recoje de la web
-    """
+    
     def __init__(self):
+        """
+        La funcion init sirve para inicializar los atributos de la clase, en este caso me interesa actualizar
+        los enlaces validos que recoje de la web
+        """
         # creo un atributo llamado valid_urls 
         # que llama a la funcion select_valid_urls
         self.enlaces_validos = UrlEMT.select_valid_urls()
         # Esta funcion solo agarra los links que  son   validos
 
-    """
-    Esta funcion sirve para obtener todos los enalces de la web EMT
-
-    >>> set()
-    """
+    
     @staticmethod
-    def get_links(html_text):
+    def get_links(html_text: str) -> set:
+        """
+        Esta funcion sirve para obtener todos los enalces de la web EMT
+        :param html_text: str
+            texto en crudo de un html
+        :return: set
+            los inks devueltos indican que son los correctos
+
+        >>> get_links("texto de la web que contiene links")
+        set("link1","link3")
+        """
         # Use regular expressions to find valid links
         link_pattern = r'<a[^>]*href="(/getattachment/[^"]+/trips_\d{2}_\d{2}_\w+-csv\.aspx)"[^>]*>.*?</a>'
         # un conjunto es una lista de objetos unicos por lo tanto el set() es la mejor opcion
         valid_links = set(re.findall(link_pattern, html_text))
         return valid_links
 
-    """
-    Esta funcion sirve filtrar los enlaces y quedarnos con el que nos interesa
-    para ello utilizo un patron que coincida que con los parametros que le hemos pasado
-    en mi caso seria month = 12 y year = 22
+    
+    def get_url(self,year: int,month: int) -> str:
+        """
+        Esta funcion sirve filtrar los enlaces y quedarnos con el que nos interesa
+        para ello utilizo un patron que coincida que con los parametros que le hemos pasado
+        en mi caso seria month = 12 y year = 22.
+        Retorna el string de la url encontrada
+        :param year: int
+            Año del csv que queremos buscar
+        :param month: int
+            Mes del csv que queremos buscar
+        :return: str
+            Retorna el strig de la url encontrada
+        >>> get_url(22,12)
+            str("link encontrado")
+        """
 
-    >>> str()
-    """
-    def get_url(self,year,month):
         # como solo son validos  los meses que son entre 1,12  y  el  año entre 2021  y 2023
         # hago un rango entre el año y los meses que nos interesan
 
@@ -68,17 +84,18 @@ class UrlEMT:
                     ValueError(f"No hay ningun enlace con tal año: {year} o mes: {month}")
         else:
             ValueError("No has introducido el año o el mes correcto")
-          
-        #return urlEncontrado
     
-    """
-    Esta funcion sirve para hacer una peticion al servidor de la web EMT,
-    recoger el texto y mandarselo a la funcion get_links
-
-    >>> set()
-    """
+    
     @staticmethod
     def select_valid_urls() -> set:
+        """
+        Método estático que se encarga de actualizar el atributo de los objetos de la clase. Devuelve un conjunto de enlaces válidos.
+        :param None
+        :return: set
+            Devuelve un conjunto de enlaces válidos
+        >>> select_valid_urls()
+            set("link1","link2","link4")
+        """
         try:
             # obtenemos el enlace de la web de bicimadrid
             response = requests.get(UrlEMT.EMT + UrlEMT.GENERAL)
@@ -89,7 +106,7 @@ class UrlEMT:
                 html_text = response.text
                 # para enviarle el texto en crudo a la funcion get links
                 # Creo que hubiera siso mucho mas sencillo hacerlo con web scraping
-                # pero como hay que utilizar expresiones reulares pues le pasamos el texto en crudo
+                # pero como hay que utilizar expresiones regulares pues le pasamos el texto en crudo
                 valid_links = UrlEMT.get_links(html_text)
             else:
                 raise ConnectionError("Conexion fallida")
@@ -98,13 +115,20 @@ class UrlEMT:
         except ConnectionError as e:
             print(e)
 
-    """
-    Esta funcion sirve para llamar a diferentes funciones con el resultado final que devuelve los datos del csv
-    en fomato StringIO
-
-    >>> StringIO
-    """
-    def get_csv(self,year,month) -> StringIO:
+    
+    def get_csv(self,year: int,month: int) -> StringIO:
+        """
+        Esta funcion sirve para llamar a diferentes funciones con el resultado final que devuelve los datos del csv
+        en fomato StringIO
+        :param year: int
+            Años del csv
+        :param month: int
+            Mes del año del csv
+        :return: StringIO
+            Retorna los datos del csv en formato StringIO
+        >>> get_csv(22,12)
+            StringIO(/x6/x8)
+        """
         url = self.get_url(year, month)
         # ahora con el enlace devuelto lo que hacemos es pasarselo a la funcion csv_from_zip
         # para que nos saque los datos del csv, en este caso nos lo va devolver en StringIO 
@@ -112,14 +136,20 @@ class UrlEMT:
         # se hace return de los datos del csv
         return csv
     
-    """
-    Esta funcion sirve para sacar los datos que hay dentro del csv.
-    Se retorna en formato StringIO
-
-    >>> StringIO
-    """    
+    
     @staticmethod
     def csv_from_zip(url: str) -> StringIO:
+        """
+        Esta funcion sirve para sacar los datos que hay dentro del csv.
+        Se retorna en formato StringIO
+        :param url:str
+            Le pasa la url donde se encuentra el csv del que hay que obtener los datos
+        :return: StringIO
+            Devuelve la informacion que hay dentro del csv en formato StringIO
+
+        >>> csv_from_zip("link1")
+            StringIO(class "string.io")
+        """    
         try:
             # le pasamos el enlace y lo que devuelve es a descarga del fichero
             file = requests.get(url)
@@ -139,7 +169,3 @@ class UrlEMT:
         return string_csv
 
 
-"""
-Example
->>> UrlEMT(12,22)
-"""

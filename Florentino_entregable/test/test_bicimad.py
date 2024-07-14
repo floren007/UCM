@@ -38,8 +38,8 @@ En esta funcion compruebo que el dataframe ya no tiene valores nulos
 """
 def test_data_is_null():
     bici = BiciMad(month=12,year=22)
-    biciNull=bici.clean()
-    assert biciNull.isnull().sum().sum() > 1
+    bici.clean()
+    assert bici.data.isnull().sum() > 1
 """
 En esta funcion se comprueba que el tipo de dato que devuelve es un pandas dataframe
 """
@@ -53,6 +53,6 @@ En esta funcion se comprueba que el tipo de dato que devuelve la funcion total_t
 def test_total_time():
     bici = BiciMad(month=12,year=22)
     assert isinstance(bici.get_data(month=12,year=22), pd.DataFrame)
-    assert isinstance(bici.most_popular_stations(), set)
+    assert isinstance(bici.most_popular_stations(), pd.Series)
 
 
